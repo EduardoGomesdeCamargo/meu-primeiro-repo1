@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h4>Quantas toneladas de soja você produziu?</h4>
+    <input type="number" id="input_qtdToneladas" placeholder="Toneladas produzidas">Toneladas
+    <h4>Qual é o valor da sua produção?</h4>
+    R$<input type="number" id="input_valorTotal">,00
+    <h4>Quantas toneladas de soja você perdeu no armazém?</h4>
+    <input type="number" id="input_qtdPerdida" placeholder="Toneladas perdidas">
+    <br> <br>
+    <button onclick="calcular()">Calcular média de soja perdida</button> <br> <br>
+
+    <div id="div_resultado"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var tonProduzida = Number(input_qtdToneladas.value);
+        var valorProducao = Number(input_valorTotal.value);
+        var qtdPerdida = Number(input_qtdPerdida.value);
+        var porcentagemPerda = qtdPerdida * 100 / tonProduzida;
+        var valorPerdido = porcentagemPerda / 100 * valorProducao;
+
+        if (tonProduzida < qtdPerdida) {
+            alert('A quantidade de soja perdida não pode ser menor do que a sua produção de soja!')
+        } else {
+             div_resultado.innerHTML = `
+             De sua produção de <b> ${tonProduzida} </b> toneladas de soja, <b style="color: red; font-size: 20px;"> ${porcentagemPerda}% </b> foram perdidos. <br>
+             
+             Caso um sistema de monitoramento de temperatura e umidade tivese sido instalado em seu armazém, <b style="color: green; font-size: 20px;"> R$${valorPerdido},00 </b> da sua produção teriam sido salvos.`
+        }
+    }
+</script>
